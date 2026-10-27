@@ -34,7 +34,7 @@ if query:
     st.chat_message("user").markdown(query)
 
     # Generate response from the model
-    response = llm.invoke(query)
+    response = llm.invoke(st.session_state.messages)
     st.chat_message("ai").markdown(response)
     st.session_state.messages.append({
         "role": "ai",
