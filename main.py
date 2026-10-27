@@ -34,9 +34,15 @@ if query:
     st.chat_message("user").markdown(query)
 
     # Generate response from the model
-    response = llm.invoke(st.session_state.messages)
-    st.chat_message("ai").markdown(response)
+    response = llm.stream(st.session_state.messages)
+    current_response = []
+    ai_response = st.chat_message("ai")
+
+    for chunk in response:
+        current_response.append(chunk)
+        ai_response.markdown("".join(current_response))
+    
     st.session_state.messages.append({
         "role": "ai",
-        "content": response
+        "content": "".join(current_response)
     })
