@@ -1,4 +1,7 @@
 langchain
 langchain-google-genai
+langchain-exa
+langchain-groq
+langgraph
 python-dotenv
 streamlit
